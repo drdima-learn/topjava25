@@ -5,6 +5,7 @@ import javax.servlet.http.*;
 import java.io.IOException;
 
 public class UserServlet extends HttpServlet {
+    public static final LoggerWrapper LOG = LoggerWrapper.get(UserServlet.class);
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.sendRedirect("users.jsp");
