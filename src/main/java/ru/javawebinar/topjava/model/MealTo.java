@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class MealTo {
+
+    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
     private final Integer id;
     private final LocalDateTime dateTime;
 
@@ -26,7 +29,7 @@ public class MealTo {
     }
 
     public String getDateTimeFormatted() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
         String formatDateTime = dateTime.format(formatter);
         return formatDateTime;
     }
