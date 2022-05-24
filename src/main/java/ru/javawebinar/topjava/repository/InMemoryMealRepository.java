@@ -1,9 +1,9 @@
 package ru.javawebinar.topjava.repository;
 
 import org.slf4j.Logger;
+import org.springframework.stereotype.Repository;
 import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.util.MealsUtil;
-import ru.javawebinar.topjava.web.UserServlet;
 
 import java.util.Collection;
 import java.util.Map;
@@ -12,6 +12,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
+@Repository
 public class InMemoryMealRepository implements MealRepository {
     private static final Logger log = getLogger(InMemoryMealRepository.class);
 
@@ -45,6 +46,7 @@ public class InMemoryMealRepository implements MealRepository {
 
     @Override
     public Collection<Meal> getAll() {
+
         log.info("getAll");
         return repository.values();
     }
