@@ -7,7 +7,7 @@ import ru.javawebinar.topjava.repository.MealRepository;
 @Service
 public class MealService {
 
-    @Autowired
+
     private MealRepository mealRepository;
 
 
