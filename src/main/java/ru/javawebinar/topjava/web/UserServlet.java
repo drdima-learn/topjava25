@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static org.slf4j.LoggerFactory.getLogger;
-@Controller
+//@Controller
 public class UserServlet extends HttpServlet {
     private static final Logger log = getLogger(UserServlet.class);
 
