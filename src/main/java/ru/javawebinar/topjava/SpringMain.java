@@ -10,7 +10,9 @@ import ru.javawebinar.topjava.web.SecurityUtil;
 import ru.javawebinar.topjava.web.meal.MealRestController;
 import ru.javawebinar.topjava.web.user.AdminRestController;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.Month;
 import java.util.Arrays;
 import java.util.List;
@@ -24,7 +26,7 @@ public class SpringMain {
             adminUserController.create(new User(null, "userName", "email@mail.ru", "password", Role.ADMIN));
 
             MealRestController mealRestController = appCtx.getBean(MealRestController.class);
-            Meal meal = mealRestController.get(8);
+            Meal meal = mealRestController.get(7);
             System.out.println(meal);
 
             List<MealTo> mealToList = mealRestController.getAllWithExcess();
@@ -33,8 +35,14 @@ public class SpringMain {
             System.out.println("==================");
 
             List<MealTo> mealToDateTime = mealRestController.getByDateTime(
-                    LocalDateTime.of(2020, Month.JANUARY, 31,10,0),
-                    LocalDateTime.of(2020,Month.JANUARY,31,20,01));
+                    //LocalDate.of(2020, Month.JANUARY, 31),
+                    null,
+                    LocalTime.of(10,0),
+                    //LocalDate.of(2020, Month.JANUARY, 31),
+                    null,
+                    null//LocalTime.of(13,01)
+            );
+
             System.out.println(mealToDateTime);
 
             System.out.println("==================");
