@@ -27,7 +27,7 @@ public class SpringMain {
             Meal meal = mealRestController.get(8);
             System.out.println(meal);
 
-            List<MealTo> mealToList = mealRestController.getAll();
+            List<MealTo> mealToList = mealRestController.getAllWithExcess();
             System.out.println(mealToList);
 
             System.out.println("==================");

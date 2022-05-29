@@ -40,9 +40,14 @@ public class MealRestController {
         return MealsUtil.getFilteredTos(meals, authUserCaloriesPerDay(),startDateTime,endDateTime);
     }
 
-    public List<MealTo> getAll(){
+    public List<Meal> getAll(){
         log.info("getAll");
-        return getTos(service.getAll(authUserId()));
+        return service.getAll(authUserId());
+    }
+
+    public List<MealTo> getAllWithExcess(){
+        log.info("getAllWithExcess");
+        return getTos(getAll());
     }
 
 
