@@ -14,11 +14,20 @@ public class User extends AbstractNamedEntity {
 
     private boolean enabled = true;
 
+
     private Date registered = new Date();
 
     private Set<Role> roles;
 
-    private int caloriesPerDay = DEFAULT_CALORIES_PER_DAY;
+    private Integer caloriesPerDay = DEFAULT_CALORIES_PER_DAY;
+
+    public User() {
+    }
+
+
+    public User(User user) {
+        this(user.getId(), user.getName(), user.email, user.getPassword(), user.getCaloriesPerDay(), user.isEnabled(), user.getRoles());
+    }
 
     public User(Integer id, String name, String email, String password, Role... roles) {
         this(id, name, email, password, DEFAULT_CALORIES_PER_DAY, true, Arrays.asList((roles)));
@@ -32,6 +41,7 @@ public class User extends AbstractNamedEntity {
         this.enabled = enabled;
         setRoles(roles);
     }
+
 
     public String getEmail() {
         return email;
@@ -61,8 +71,8 @@ public class User extends AbstractNamedEntity {
         return caloriesPerDay;
     }
 
-    public void setCaloriesPerDay(int caloriesPerDay) {
-        this.caloriesPerDay = caloriesPerDay;
+    public void setCaloriesPerDay(Integer caloriesPerDay) {
+        this.caloriesPerDay = caloriesPerDay == null ? DEFAULT_CALORIES_PER_DAY : caloriesPerDay;
     }
 
     public boolean isEnabled() {
@@ -92,4 +102,6 @@ public class User extends AbstractNamedEntity {
                 ", caloriesPerDay=" + caloriesPerDay +
                 '}';
     }
+
+
 }
