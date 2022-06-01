@@ -15,16 +15,5 @@ public class UserTestData {
     public static final User USER = new User(USER_ID, "User", "user@yandex.ru", "password", 2000, true, Arrays.asList(Role.USER));
     public static final User ADMIN = new User(ADMIN_ID, "Admin", "admin@gmail.com", "admin", Role.ADMIN);
 
-    public static void assertMatch(User actual, User expected) {
-        assertThat((actual)).isEqualToIgnoringGivenFields(expected,
-                "registered", "roles");
-    }
 
-    public static void assertMatch(Iterable<User> actual, User... expected) {
-        assertMatch(actual, Arrays.asList(expected));
-    }
-    public static void assertMatch(Iterable<User> actual, Iterable<User> expected) {
-        assertThat(actual).usingElementComparatorIgnoringFields("registered", "roles").
-                isEqualTo(expected);
-    }
 }

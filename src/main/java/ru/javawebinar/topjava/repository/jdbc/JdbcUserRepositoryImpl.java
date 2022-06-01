@@ -10,7 +10,6 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 import ru.javawebinar.topjava.model.User;
 import ru.javawebinar.topjava.repository.UserRepository;
-import ru.javawebinar.topjava.util.exception.NotFoundException;
 
 import javax.sql.DataSource;
 import java.util.List;
@@ -45,14 +44,12 @@ public class JdbcUserRepositoryImpl implements UserRepository {
                 .addValue("registered", user.getRegistered())
 
                 .addValue("enabled", user.isEnabled())
-        .addValue("caloriesPerDay", user.getCaloriesPerDay());
+                .addValue("caloriesPerDay", user.getCaloriesPerDay());
 
         if (user.isNew()) {
             Number newKey = insertUser.executeAndReturnKey(map);
             user.setId(newKey.intValue());
         } else {
-            String sql = "" +
-                    "";
             namedParameterJdbcTemplate.update(
                     "UPDATE users SET name=:name, email=:email, password=:password, " +
                             "registered=:registered, enabled=:enabled, calories_per_day=:caloriesPerDay WHERE id=:id"
@@ -67,15 +64,14 @@ public class JdbcUserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User get(int id){
+    public User get(int id) {
         User user;
         try {
             user = jdbcTemplate.queryForObject(
                     "SELECT id, name, email, password, registered, enabled, calories_per_day FROM users WHERE id=?",
                     ROW_MAPPER, id
             );
-        }
-        catch (DataAccessException e){
+        } catch (DataAccessException e) {
             return null;
         }
         return user;

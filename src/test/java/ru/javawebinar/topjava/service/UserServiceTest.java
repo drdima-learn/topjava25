@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static ru.javawebinar.topjava.UserTestData.*;
+import static ru.javawebinar.topjava.UtilTestData.assertMatch;
 
 @ContextConfiguration({
         "classpath:spring/spring-app.xml",
@@ -31,7 +32,7 @@ public class UserServiceTest {
     @Test
     public void create() {
         User newUser = new User(
-                null,"New User", "new@gmail.com", "newpass", 1555, false, Arrays.asList(Role.USER)
+                null, "New User", "new@gmail.com", "newpass", 1555, false, Arrays.asList(Role.USER)
         );
         User created = service.create(newUser);
         newUser.setId(created.getId());
@@ -40,9 +41,9 @@ public class UserServiceTest {
 
 
     @Test(expected = DataAccessException.class)
-    public void duplicate(){
+    public void duplicate() {
         User newUser = new User(
-                null,"Duplicate", "user@yandex.ru", "newpass", 1555, false, Arrays.asList(Role.USER)
+                null, "Duplicate", "user@yandex.ru", "newpass", 1555, false, Arrays.asList(Role.USER)
         );
         User created = service.create(newUser);
         newUser.setId(created.getId());
@@ -51,11 +52,11 @@ public class UserServiceTest {
     @Test
     public void delete() {
         service.delete(USER_ID);
-        assertMatch(service.getAll(), ADMIN);
+        assertMatch(service.getAll(), Arrays.asList(ADMIN));
     }
 
     @Test(expected = NotFoundException.class)
-    public void deleteNotExistUser(){
+    public void deleteNotExistUser() {
         service.delete(999);
     }
 
@@ -85,7 +86,7 @@ public class UserServiceTest {
     @Test
     public void getAll() {
         List<User> all = service.getAll();
-        assertMatch(all, ADMIN,USER);
+        assertMatch(all, ADMIN, USER);
 
     }
 
