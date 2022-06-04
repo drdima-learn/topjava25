@@ -74,6 +74,12 @@ public class UserServiceTest {
     }
 
     @Test
+    public void getByEmailNotFound() {
+        User user = service.getByEmail("admin@microsoft.com");
+        USER_MATCHER.assertMatch(user, admin);
+    }
+
+    @Test
     public void update() {
         User updated = getUpdated();
         service.update(updated);
