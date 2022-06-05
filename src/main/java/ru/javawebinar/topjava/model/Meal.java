@@ -18,14 +18,14 @@ import java.time.LocalTime;
 @NamedQueries({
         @NamedQuery(name = Meal.BY_ID_AND_USERID, query = "SELECT m FROM Meal m WHERE m.id=:id AND m.user.id=:userId"),
         @NamedQuery(name = Meal.GET_ALL_BY_USERID, query = "SELECT m FROM Meal m WHERE m.user.id=:userId ORDER BY m.dateTime DESC"),
-        @NamedQuery(name = Meal.DELETE_BY_ID_AND_USERID, query = "DELETE FROM Meal m WHERE m.id=:id AND m.user.id=:userId")
-        //@NamedQuery(name = Meal.UPDATE_BY_USERID, query = "UPDATE Meal m SET m. WHERE m.id=:id AND m.user.id=:userId")
+        @NamedQuery(name = Meal.DELETE_BY_ID_AND_USERID, query = "DELETE FROM Meal m WHERE m.id=:id AND m.user.id=:userId"),
+        @NamedQuery(name = Meal.GET_BETWEEN, query = "SELECT m FROM Meal m WHERE m.user.id=:userId AND m.dateTime >=:startDateTime AND m.dateTime<:endDateTime ORDER BY m.dateTime DESC")
 })
 public class Meal extends AbstractBaseEntity {
     public static final String BY_ID_AND_USERID = "Meal.byIdAndUserId";
     public static final String GET_ALL_BY_USERID = "Meal.getAllByUserId";
     public static final String DELETE_BY_ID_AND_USERID = "Meal.deleteByIdAndUserId";
-    //public static final String UPDATE_BY_USERID = "Meal.updateByUserId";
+    public static final String GET_BETWEEN = "Meal.getBetween";
     @Column(name = "date_time", nullable = false)
     @NotNull
     private LocalDateTime dateTime;
