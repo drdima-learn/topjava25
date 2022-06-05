@@ -7,19 +7,16 @@ import org.slf4j.Logger;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
 public class TestTimeRule extends ExternalResource {
-    private static final Logger log = getLogger(TestTimeRule.class);
+    private static final Logger log = getLogger("result");
 
 
     private LocalDateTime start;
 
     private String testName;
-
 
 
     @Override
@@ -40,6 +37,6 @@ public class TestTimeRule extends ExternalResource {
         Duration duration = Duration.between(start, end);
         long millis = duration.toMillis();
         log.info("test name: {} finished in {} milliseconds", testName, millis);
-        TestTimeClassRule.map.put(testName,millis);
+        TestTimeClassRule.map.put(testName, millis);
     }
 }

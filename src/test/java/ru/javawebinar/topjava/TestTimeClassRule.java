@@ -9,7 +9,7 @@ import java.util.Map;
 import static org.slf4j.LoggerFactory.getLogger;
 
 public class TestTimeClassRule extends ExternalResource {
-    private static final Logger log = getLogger(TestTimeClassRule.class);
+    private static final Logger log = getLogger("result");
 
     public static Map<String, Long> map = new HashMap<>();
 

@@ -60,7 +60,6 @@ public class JpaMealRepository implements MealRepository {
     public List<Meal> getAll(int userId) {
         return em.createNamedQuery(Meal.GET_ALL_BY_USERID, Meal.class)
                 .setParameter("userId", userId)
-                .setParameter("userId", userId)
                 .getResultList();
     }
 
