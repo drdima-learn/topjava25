@@ -75,8 +75,7 @@ public class UserServiceTest {
 
     @Test
     public void getByEmailNotFound() {
-        User user = service.getByEmail("admin@microsoft.com");
-        USER_MATCHER.assertMatch(user, admin);
+        assertThrows(NotFoundException.class, () -> service.getByEmail("admin@microsoft.com"));
     }
 
     @Test
