@@ -18,6 +18,9 @@
 
         <spring.version>5.3.15</spring.version>
 
+        <!-- Tomcat -->
+        <tomcat.version>9.0.59</tomcat.version>
+
         <!-- Logging -->
         <logback.version>1.2.10</logback.version>
         <slf4j.version>1.7.35</slf4j.version>
@@ -104,12 +107,7 @@
             <version>${spring.version}</version>
         </dependency>
 
-        <!--DataBase-->
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>${postgresql.version}</version>
-        </dependency>
+
 
         <!--- ORM -->
         <dependency>
@@ -167,6 +165,36 @@
     </dependencies>
 
     <profiles>
+        <profile>
+            <id>hsqldb</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.hsqldb</groupId>
+                    <artifactId>hsqldb</artifactId>
+                    <version>2.3.4</version>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>postgres</id>
+            <dependencies>
+                <!--DataBase-->
+                <dependency>
+                    <groupId>org.postgresql</groupId>
+                    <artifactId>postgresql</artifactId>
+                    <version>${postgresql.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.tomcat</groupId>
+                    <artifactId>tomcat-jdbc</artifactId>
+                    <version>${tomcat.version}</version>
+                    <scope>provided</scope>
+                </dependency>
+            </dependencies>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
     </profiles>
 
     <dependencyManagement>
