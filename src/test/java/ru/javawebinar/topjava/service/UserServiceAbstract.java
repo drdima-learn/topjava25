@@ -28,7 +28,7 @@ import static ru.javawebinar.topjava.UserTestData.*;
 @RunWith(SpringRunner.class)
 @Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
 
-public abstract class UserServiceAbstract {
+public abstract class UserServiceAbstract extends ServiceAbstract{
 
     @Autowired
     private UserService service;
