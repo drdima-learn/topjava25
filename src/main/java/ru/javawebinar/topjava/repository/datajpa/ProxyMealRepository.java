@@ -7,13 +7,14 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.model.User;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface ProxyMealRepository extends JpaRepository<Meal, Integer> {
 
     @Transactional
     @Modifying
-    int delete(int id);
+    int deleteByIdAndUserId(int id, int userId);
 
     @Override
     @Transactional
@@ -23,7 +24,12 @@ public interface ProxyMealRepository extends JpaRepository<Meal, Integer> {
 
     Meal findOne(Integer id);
 
-    @Override
-    List<Meal> findAll(Sort sort);
+
+    List<Meal> findAllByUserIdOrderByDateTimeDesc(int userId);
+
+    //
+    //SELECT m FROM Meal m
+    //WHERE m.user.id=:userId AND m.dateTime >= :startDateTime AND m.dateTime < :endDateTime ORDER BY m.dateTime DESC
+    List<Meal> findAllByUserIdAndDateTimeGreaterThanEqualAndDateTimeLessThanOrderByDateTimeDesc(int userId, LocalDateTime startDateTime, LocalDateTime endDateTime);
 
 }
