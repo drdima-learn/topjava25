@@ -18,8 +18,11 @@ import static ru.javawebinar.topjava.util.ValidationUtil.assureIdConsistent;
 import static ru.javawebinar.topjava.util.ValidationUtil.checkNew;
 
 @Controller
+
 public class MealRestController {
     private static final Logger log = LoggerFactory.getLogger(MealRestController.class);
+
+
 
     private final MealService service;
 

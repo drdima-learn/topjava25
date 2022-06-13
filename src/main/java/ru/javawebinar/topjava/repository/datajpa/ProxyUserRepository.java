@@ -32,4 +32,6 @@ public interface ProxyUserRepository extends JpaRepository<User, Integer> {
     List<User> findAll(Sort sort);
 
     User getByEmail(String email);
+
+    User findById(int id);
 }

@@ -31,7 +31,7 @@ import static ru.javawebinar.topjava.UserTestData.*;
 public abstract class UserServiceAbstract extends ServiceAbstract{
 
     @Autowired
-    private UserService service;
+    protected UserService service;
 
     @Autowired
     private CacheManager cacheManager;

@@ -3,7 +3,9 @@ package ru.javawebinar.topjava.service;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.model.User;
 import ru.javawebinar.topjava.repository.UserRepository;
 
@@ -33,7 +35,13 @@ public class UserService {
     }
 
     public User get(int id) {
-        return checkNotFoundWithId(repository.get(id), id);
+        User user = repository.get(id);
+        user.setMeals(null);
+        return checkNotFoundWithId(user, id);
+    }
+    @Transactional
+    public User getWithMeals(int id) {
+        return get(id);
     }
 
     public User getByEmail(String email) {
@@ -51,4 +59,6 @@ public class UserService {
         Assert.notNull(user, "user must not be null");
         checkNotFoundWithId(repository.save(user), user.id());
     }
+
+
 }
