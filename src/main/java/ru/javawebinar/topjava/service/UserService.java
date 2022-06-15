@@ -36,7 +36,7 @@ public class UserService {
 
     public User get(int id) {
         User user = repository.get(id);
-        user.setMeals(null);
+        //user.setMeals(null);
         return checkNotFoundWithId(user, id);
     }
     @Transactional

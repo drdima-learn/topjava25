@@ -15,8 +15,8 @@ public class DataJpaMealRepository implements MealRepository {
     @Autowired
     ProxyMealRepository proxyMealRepository;
 
-    @Autowired
-    ProxyUserRepository proxyUserRepository;
+    //@Autowired
+    //ProxyUserRepository proxyUserRepository;
 
     @Override
     public Meal save(Meal meal, int userId) {
